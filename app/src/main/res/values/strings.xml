@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">QL Chi Tiêu</string>
+    <string-array name="category">
+        <item>Mua sắm</item>
+        <item>Ăn uống</item>
+        <item>Tiền nhà</item>
+        <item>Điện nước</item>
+        <item>Đi lại</item>
+        <item>Khác</item>
+    </string-array>
+    <string name="title_activity_modify">ModifyActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="register">REGISTER</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="signup_login_hint">Already have an account? Sign In</string>
+    <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+    <string name="login_name_hint">Name</string>
+    <string name="login_mobile_number_hint">Mobile Number</string>
+</resources>
