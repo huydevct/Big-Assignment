@@ -17,7 +17,7 @@ import com.example.sqlite.dal.NeutralSQLiteHelper;
 import com.example.sqlite.dal.SQLiteHelper;
 
 public class LoginActivity extends AppCompatActivity {
-    private Button loginBtn, registerBtn, hidePasswordBtn, forgotPassBtn;
+    private Button loginBtn, registerBtn, hidePasswordBtn;
     private EditText usernameET, passwordET;
     private NeutralSQLiteHelper neutralSQLiteHelper;
     SQLiteHelper sqLiteHelper;
@@ -77,10 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                     passwordET.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
             });
-
-            forgotPassBtn.setOnClickListener(view->{
-                startActivity(new Intent(LoginActivity.this, ForgotPassActivity.class));
-            });
         }
     }
 
@@ -88,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         registerBtn = findViewById(R.id.registerBtn);
         hidePasswordBtn = findViewById(R.id.hidePasswordBtn);
-        forgotPassBtn  = findViewById(R.id.forgotPassBtn);
         usernameET = findViewById(R.id.usernameET);
         passwordET = findViewById(R.id.passwordET);
         checkboxKeepLogin = findViewById(R.id.checkboxKeepLogin);

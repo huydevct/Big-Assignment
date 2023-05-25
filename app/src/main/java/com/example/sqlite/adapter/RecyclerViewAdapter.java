@@ -58,7 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Item item = list.get(position);
         holder.title.setText(item.getTitle());
         holder.category.setText(item.getCategory());
-        holder.price.setText(item.getPrice() + "K");
+        holder.price.setText(item.getPrice() + "k");
         String sMonth = item.getDate().substring(5,7);
         String sDate = item.getDate().substring(8,10);
         holder.date.setText(sDate + "/" + sMonth + "/2022");

@@ -3,6 +3,7 @@ package com.example.sqlite.fragment;
 import static com.example.sqlite.StatisticsActivity.getEndTimestamp;
 import static com.example.sqlite.StatisticsActivity.getStartTimestamp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -46,6 +47,7 @@ public class FragmentHome extends Fragment implements RecyclerViewAdapter.ItemLi
     private String selectedMonth = "Tất cả";
 
     Date d = new Date();
+    @SuppressLint("SimpleDateFormat")
     SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
 
     @Nullable
@@ -54,6 +56,7 @@ public class FragmentHome extends Fragment implements RecyclerViewAdapter.ItemLi
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -85,6 +88,7 @@ public class FragmentHome extends Fragment implements RecyclerViewAdapter.ItemLi
         recyclerViewAdapter.setContextItemListener(this);
 
         spViewType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String category = spViewType.getItemAtPosition(position).toString();
@@ -100,13 +104,12 @@ public class FragmentHome extends Fragment implements RecyclerViewAdapter.ItemLi
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
         // Search by each month
         spMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String month = spMonth.getItemAtPosition(position).toString();
@@ -158,6 +161,7 @@ public class FragmentHome extends Fragment implements RecyclerViewAdapter.ItemLi
         startActivity(intent);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onResume() {
         super.onResume();

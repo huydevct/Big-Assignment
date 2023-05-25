@@ -59,15 +59,6 @@
         android:checked="true"
         android:text="Duy trì đăng nhập"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quên mật khẩu?"
-        android:background="#00FFFFFF"
-        android:layout_marginLeft="36dp"
-        android:layout_gravity="center"
-        android:textAllCaps="false"
-        android:id="@+id/forgotPassBtn"/>
     </LinearLayout>
 
     <Button

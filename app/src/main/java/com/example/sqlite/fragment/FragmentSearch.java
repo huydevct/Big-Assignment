@@ -246,8 +246,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener, Re
                 onResume();
             });
 
-            builder.setNegativeButton("Không", (dialogInterface, i) -> {
-            });
+            builder.setNegativeButton("Không", (dialogInterface, i) -> {});
             AlertDialog dialog = builder.create();
             dialog.show();
         }
