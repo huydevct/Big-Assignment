@@ -22,10 +22,12 @@ import androidx.annotation.Nullable;
 
 import android.widget.SearchView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sqlite.ModifyItemActivity;
 import com.example.sqlite.R;
 import com.example.sqlite.StatisticsActivity;
 import com.example.sqlite.adapter.RecyclerViewAdapter;
@@ -37,7 +39,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class FragmentSearch extends Fragment implements View.OnClickListener {
+public class FragmentSearch extends Fragment implements View.OnClickListener, RecyclerViewAdapter.ItemListener, RecyclerViewAdapter.ContextItemListener  {
     private RecyclerViewAdapter adapter;
     private SQLiteHelper db;
     private RecyclerView recyclerView;
@@ -64,11 +66,13 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
 
         adapter = new RecyclerViewAdapter();
         adapter.setList(list);
-        tvTong.setText("Tổng tiền: " + sumPrice(list) + "K");
+        tvTong.setText("Tổng tiền: " + sumPrice(list) + "k");
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        adapter.setItemListener(this);
+        adapter.setContextItemListener(this);
 
         // Search by title
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -80,7 +84,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
             @Override
             public boolean onQueryTextChange(String newText) {
                 List<Item> list = db.searchByTitle(newText);
-                tvTong.setText("Tổng tiền: " + sumPrice(list) + "K");
+                tvTong.setText("Tổng tiền: " + sumPrice(list) + "k");
                 adapter.setList(list);
                 return true;
             }
@@ -103,7 +107,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
                     list = db.searchByCategory(category);
                 }
                 adapter.setList(list);
-                tvTong.setText("Tổng tiền: " + sumPrice(list) + "K");
+                tvTong.setText("Tổng tiền: " + sumPrice(list) + "k");
             }
 
             @Override
@@ -118,7 +122,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
         super.onResume();
         List<Item> list = db.getAll();
         adapter.setList(list);
-        tvTong.setText("Tổng tiền: " + sumPrice(list) + "K");
+        tvTong.setText("Tổng tiền: " + sumPrice(list) + "k");
     }
 
     private void initView(View view) {
@@ -147,6 +151,14 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
             sum += Integer.parseInt(i.getPrice());
         }
         return sum;
+    }
+
+    @Override
+    public void onItemClickListener(View view, int position) {
+        Item item=adapter.getItem(position);
+        Intent intent=new Intent(getActivity(), ModifyItemActivity.class);
+        intent.putExtra(  "item", item);
+        startActivity(intent);
     }
 
     // search by date and search event
@@ -211,6 +223,33 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
             Intent intent = new Intent(getActivity(), StatisticsActivity.class);
             intent.putExtra("month", selectedMonth);
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onContextItemClickListener(int action, int position) {
+        Item item = adapter.getItem(position);
+
+        if (action == 1) {
+            Intent intent = new Intent(getActivity(), ModifyItemActivity.class);
+            intent.putExtra("item", item);
+            startActivity(intent);
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+            builder.setTitle("Thông báo");
+            builder.setMessage("Bạn có chắc muốn xóa " + item.getTitle() + " không?");
+            builder.setIcon(R.drawable.ic_remove);
+
+            builder.setPositiveButton("Có", (dialogInterface, i) -> {
+                SQLiteHelper db = new SQLiteHelper(getContext());
+                db.deleteItem(item.getId());
+                onResume();
+            });
+
+            builder.setNegativeButton("Không", (dialogInterface, i) -> {
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 }

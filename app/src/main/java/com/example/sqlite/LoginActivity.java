@@ -73,8 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             hidePasswordBtn.setOnClickListener(view -> {
                 if(passwordET.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
                     passwordET.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }
-                else{
+                }else{
                     passwordET.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
             });

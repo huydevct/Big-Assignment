@@ -8,12 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewTreeObserver;
 
 import com.example.sqlite.adapter.ViewPagerAdapter;
-import com.example.sqlite.dal.NeutralSQLiteHelper;
-import com.example.sqlite.dal.SQLiteHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

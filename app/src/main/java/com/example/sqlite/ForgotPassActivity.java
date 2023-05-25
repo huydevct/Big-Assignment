@@ -27,7 +27,7 @@ public class ForgotPassActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(ForgotPassActivity.this, ResetPassActivity.class);
+            Intent intent = new Intent(ForgotPassActivity.this, LoginActivity.class);
             intent.putExtra("username", username);
             intent.putExtra("email", email);
             startActivity(intent);
